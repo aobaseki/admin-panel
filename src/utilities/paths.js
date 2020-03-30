@@ -1,0 +1,21 @@
+export default{
+    login: "/login",
+    products: "/products",
+    brands: "/brands",
+    viewCategories: "/classification/product_categories",
+    viewGroups: "/classification/product_group",
+    viewManufacturers: "/classification/manufacturers",
+    viewSegment: "/classification/segment",
+    copyProducts: "/copy_products",
+    importProducts: "/classification/importProducts",
+    assignProduct: "/assign_product",
+    addProducts : "/",
+    addBrands : "/brands",
+    productCategories : "/product_categories",
+    addGroups : "/product_groups",
+    manufacturers : "/manufacturers",
+    branches : "/branches",
+    companies : "/companies",
+    businessCategories : "/business_categories",
+    accounts: "/accounts"
+};
