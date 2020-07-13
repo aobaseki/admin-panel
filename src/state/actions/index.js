@@ -14,7 +14,8 @@ const index = (resourceConfig, parentResources = {}, options = {}) => {
   return async dispatch => {
     try {
       const results = await new Api(resourceConfig, parentResources, options).index();
-      if (results) {
+      console.log(results);
+      if (results && results.data[resourceConfig.resource]) {
         dispatch({
           type: actionTypes[`INDEX_${resourceConfig.resource.toUpperCase()}_SUCCESS`],
           results: results.data[resourceConfig.resource],
@@ -37,7 +38,7 @@ const createOne = (params, resourceConfig, parentResources = {}, options = {}) =
     try {
       const result = await new Api(resourceConfig, parentResources, options).create(params);
       if (result) {
-        message.success(`Successfully created ${resourceConfig.resource}`);
+        message.success(`Successfully created the ${pluralize.singular(resourceConfig.resource)} ${result.data[resourceConfig.mainColumnName]}`);
         dispatch({
           type: actionTypes[`CREATE_ONE_${singular(resourceConfig.resource).toUpperCase()}_SUCCESS`],
           result: result.data,
@@ -61,7 +62,7 @@ const updateOne = (identifierValue, params, resourceConfig, parentResources = {}
     try {
       const result = await new Api(resourceConfig, parentResources, options).update(identifierValue, params);
       if (result) {
-        message.success(`Successfully updated ${resourceConfig.resource}`);
+        message.success(`Successfully updated the ${pluralize.singular(resourceConfig.resource)} ${result.data[resourceConfig.mainColumnName]}`);
         dispatch({
           type: actionTypes[`UPDATE_ONE_${singular(resourceConfig.resource).toUpperCase()}_SUCCESS`],
           result: result.data,
@@ -88,7 +89,7 @@ const deleteOne = (identifierValue, resourceConfig, parentResources = {}, option
     try {
       const result = await new Api(resourceConfig, parentResources, options).delete(identifierValue);
       if (result) {
-        message.success(`Successfully deleted ${resourceConfig.resource}`);
+        message.success(`Successfully deleted ${resourceConfig.resource} with ${resourceConfig.primaryKeyName} ${identifierValue}`);
         dispatch({
           type: actionTypes[`DELETE_ONE_${singular(resourceConfig.resource).toUpperCase()}_SUCCESS`],
           identifierValue: identifierValue,

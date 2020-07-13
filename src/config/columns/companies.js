@@ -1,4 +1,5 @@
 import inputTypes from "../inputTypes";
+import relationTypes from "../relationTypes";
 
 const columns = [
   {
@@ -21,15 +22,15 @@ const columns = [
     }
   },
   {
-    title: 'Business Category',
-    dataIndex: 'businessCategoryId',
-    isForeignEntity: true,
-    resourceKey: 'businessCategory',
-    resource: 'business_categories',
+    title: 'Stations',
+    dataIndex: 'stationIds',
+    resource: 'stations',
+    resourceKey: 'stations',
     required: false,
-    isTableColumn: true,
+    showCountInstead: true,
     dataType: {
-      type: inputTypes.multi,
+      type: inputTypes.multiValues,
+      relationType: relationTypes.manyToMany
     }
   },
 ];

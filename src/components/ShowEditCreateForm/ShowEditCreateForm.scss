@@ -1,23 +1,24 @@
 #save-btn {
-  background-color: #DAAB59;
+  background-color: #0075EC;
   font-size: 18px;
   padding-top: 10px;
   padding-bottom: 10px;
   height: 45px;
+  color: white;
   &:hover {
-    border-color: #86610C;
-    color: #86610C;
+    border-color: #0075EC;
+    color: #0075EC;
     background-color: white;
   }
   &:active {
-    border-color: #86610C;
-    color: #86610C;
+    border-color: #0075EC;
+    color: #0075EC;
     background-color: white;
   }
 }
 
 .ant-drawer-title {
-  color:  #86610C;
+  color:  #0075EC;
   font-size: 20px;
   text-align: center;
 }
@@ -29,7 +30,7 @@
 .ant-drawer-close {
   .anticon.anticon-close {
     svg {
-      color: #62738d;
+      color: #ff5943;
       font-weight: bold;
     }
   }

@@ -1,28 +1,24 @@
-import brands from './brands';
-import manufacturers from './manufacturers';
 import users from './users';
-import business_categories from './businessCategories';
 import companies from './companies';
-import branches from './branches';
-import product_categories from './productCategories';
 import products from './products';
-import product_segments from './productSegments';
-import product_segment_entries from './productSegmentEntries';
-import customers from './customers';
+import countries from './countries';
+import regions from './regions';
+import towns from './towns';
+import communities from './communities';
+import stations from "./stations";
+import organizations from "./organizations";
 
 
 const allColumns = {
-  brands,
-  manufacturers,
   users,
-  business_categories,
   companies,
-  branches,
-  product_categories,
   products,
-  product_segments,
-  product_segment_entries,
-  customers
+  countries,
+  regions,
+  towns,
+  communities,
+  stations,
+  organizations
 };
 
 

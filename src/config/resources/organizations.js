@@ -1,12 +1,11 @@
 export default {
-    resource: "products",
-    displayName: "Products",
+    resource: "organizations",
     primaryKeyName: "id",
+    displayName: "Organizations",
     mainColumnName: "name",
     isReady: true,
     isGeneric: true,
     canEdit: true,
-    canDelete: true,
     showCreatedAt: true,
     showUpdatedAt: true
-}
+};

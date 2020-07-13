@@ -2,15 +2,6 @@ import inputTypes from "../inputTypes";
 
 const columns = [
   {
-    title: 'ID',
-    dataIndex: 'id',
-    required: true,
-    dataType: {
-      type: inputTypes.string,
-      primaryKey: true
-    }
-  },
-  {
     title: 'Name',
     dataIndex: 'name',
     required: true,
@@ -21,6 +12,17 @@ const columns = [
     sortDirections: ['descend', 'ascend'],
     dataType: {
       type: inputTypes.string,
+    }
+  },
+  {
+    title: 'Code',
+    dataIndex: 'code',
+    required: true,
+    isTableColumn: true,
+    userBasedPrimaryKey: true,
+    dataType: {
+      type: inputTypes.string,
+      primaryKey: true
     }
   },
 ];

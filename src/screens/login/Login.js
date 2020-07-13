@@ -4,8 +4,7 @@ import './login.scss';
 import { useAuth0 } from "../../react-auth0-spa";
 import paths from "../../utilities/paths";
 import { withRouter } from 'react-router-dom';
-import Logo from '../../assets/img/small.png';
-
+import Logo from '../../assets/img/rovebusSVG.svg';
 
 const { Title } = Typography;
 
@@ -13,7 +12,7 @@ const Login = (props) => {
   const {history} = props;
   const { isAuthenticated, loginWithRedirect } = useAuth0();
 
-  if(isAuthenticated) history.push(paths.users);
+  if(isAuthenticated) history.push(paths.trips);
   return (
     <Fragment>
       {!isAuthenticated && (

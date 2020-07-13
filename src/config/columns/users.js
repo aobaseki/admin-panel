@@ -16,6 +16,7 @@ const columns = [
     key: 'firstName',
     mainColumn: true,
     isTableColumn: true,
+    required: true,
     dataType: {
       type: inputTypes.string,
     }
@@ -25,6 +26,7 @@ const columns = [
     dataIndex: 'otherNames',
     key: 'otherNames',
     isTableColumn: true,
+    required: true,
     dataType: {
       type: inputTypes.string,
     }
@@ -34,15 +36,18 @@ const columns = [
     dataIndex: 'phone',
     key: 'phone',
     isTableColumn: true,
+    required: true,
     dataType: {
       type: inputTypes.string,
     }
   },
   {
-    title: 'Username',
-    dataIndex: 'username',
-    key: 'username',
-    isTableColumn: true,
+    title: 'Password',
+    dataIndex: 'password',
+    key: 'password',
+    cannotEdit: true,
+    cannotShow: true,
+    required: true,
     dataType: {
       type: inputTypes.string,
     }
@@ -51,6 +56,8 @@ const columns = [
     title: 'Gender',
     dataIndex: 'gender',
     key: 'gender',
+    isTableColumn: true,
+    required: true,
     dataType: {
       type: inputTypes.multi,
       values: ['male', 'female']

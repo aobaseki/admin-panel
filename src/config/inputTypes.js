@@ -4,7 +4,6 @@ module.exports = {
   multi: 'multi',
   boolean: 'boolean',
   date: 'date',
-  multipleValues: 'multipleValues', // chips
-  dynamicMultiWithChildren: 'dynamicMultiWithChildren',
-  picture: 'picture'
+  gps: 'gps',
+  multiValues: 'multiValues'
 };

@@ -374,7 +374,7 @@ class GenericTable extends React.Component {
             }}>
             <Tag
               style={{
-                color: '#007462',
+                color: '#004DBC',
                 cursor: 'pointer',
                 fontSize: '15px',
                 paddingBottom: '3px',
@@ -397,7 +397,7 @@ class GenericTable extends React.Component {
               :
               <Tag
                 style={{
-                  color: '#007462',
+                  color: '#004DBC',
                   cursor: 'pointer',
                   fontSize: '15px',
                   paddingBottom: '3px',
@@ -409,6 +409,32 @@ class GenericTable extends React.Component {
         </b>
     });
 
+    updatedColumns.filter(col => col.dataType.type === inputTypes.dynamicMultiWithChildren).forEach(updatedColumn => {
+      updatedColumn.render = (text, record) =>
+        <b style={{ cursor: 'pointer', fontWeight: 'normal'}}>
+          {
+            !record[updatedColumn.childResourceConfig.resource] ? ''
+              : record[updatedColumn.childResourceConfig.resource]
+                .map(
+                  item =>
+                    <Tag
+                      key={item.id}
+                      style={{
+                        color: '#004DBC',
+                        cursor: 'pointer',
+                        fontSize: '15px',
+                        paddingBottom: '3px',
+                        paddingTop: '3px',
+                        marginBottom: '6px'
+                      }}
+                    >
+                      { item.name }
+                    </Tag>
+                )
+          }
+        </b>
+    });
+    /*
     updatedColumns.filter(col => col.dataType.type === inputTypes.dynamicMultiWithChildren).forEach(updatedColumn => {
       updatedColumn.render = (text, record) =>
         <b style={{ cursor: 'pointer', fontWeight: 'normal'}}>
@@ -440,6 +466,7 @@ class GenericTable extends React.Component {
           }
         </b>
     });
+    */
 
     mainColumn.render = (text, record) =>
       <b
@@ -448,13 +475,31 @@ class GenericTable extends React.Component {
           this.routeOrShowRender(resource, record);
         }}>{text}</b>;
 
+    updatedColumns.filter(col => col.hasManyField === true).map(col => {
+      col.render = (text, record) =>
+        record[col.resource].map(item =>
+          <Tag
+            key={item.id}
+            style={{
+              color: '#004DBC',
+              cursor: 'pointer',
+              fontSize: '15px',
+              paddingBottom: '3px',
+              paddingTop: '3px',
+              marginBottom: '6px'
+            }}
+          >
+            { item.name }
+          </Tag>)
+    });
+
     if (resource.showCreatedAt) {
       updatedColumns.push({
         title: 'Created At',
-        dataIndex: 'created_at',
+        dataIndex: 'createdAt',
         isTableColumn: true,
         required: true,
-        render: (text) => <i style={{ fontStyle: 'normal'}}>{new Date(text * 1000).toDateString().split('GMT')[0]}</i>,
+        render: (text) => <i style={{ fontStyle: 'normal'}}>{new Date(text).toDateString().split('GMT')[0]}</i>,
         dataType: {
           type: inputTypes.date,
         }});
@@ -463,10 +508,10 @@ class GenericTable extends React.Component {
     if (resource.showUpdatedAt) {
       updatedColumns.push({
         title: 'Updated At',
-        dataIndex: 'updated_at',
+        dataIndex: 'updatedAt',
         isTableColumn: true,
         required: true,
-        render: (text) => <i style={{ fontStyle: 'normal'}}>{new Date(text * 1000).toDateString().split('GMT')[0]}</i>,
+        render: (text) => <i style={{ fontStyle: 'normal'}}>{new Date(text).toDateString().split('GMT')[0]}</i>,
         dataType: {
           type: inputTypes.date,
         }});
@@ -640,6 +685,10 @@ class GenericTable extends React.Component {
             </Button>
             <Button
               htmlType="submit"
+              style={{
+                marginLeft: '50px',
+                marginRight: '20px'
+              }}
               onClick={() => {
                 this.setState({
                   recordToEdit: null,
@@ -648,7 +697,7 @@ class GenericTable extends React.Component {
                 this.showEditDrawer();
               }}
               icon={'plus'}
-              id={"add-btn"}
+              className={"add-btn"}
             >
               New
             </Button>
@@ -665,13 +714,13 @@ class GenericTable extends React.Component {
             {
               this.state.routes.map(
                 route =>
-                  <Col key={route.path} span={6}>
+                  <Col key={route.path} span={5}>
                     <Collapse
                       bordered={false}
                       className={'breadcrumb'}
                     >
                       <Panel
-                        header={route.resource.displayName}
+                        header={`${pluralize.singular(route.resource.displayName)}: ${route.record.name}`}
                         key="1"
                         className={'breadcrumb-panel'}
                       >
@@ -745,8 +794,8 @@ class GenericTable extends React.Component {
                       actions={mobileCardActions(item)}
                     >
                       <Row onClick={() => this.routeOrShowRender(resource, item)}>
-                        <Col span={8} style={{textAlign: 'left', color: '#AE735D', fontSize: '16px'}}>{mainColumn.title}</Col>
-                        <Col span={16} style={{textAlign: 'right', fontSize: '16px'}}>{item[mainColumn.dataIndex]}</Col>
+                        <Col span={8} style={{textAlign: 'left', color: '#AE735D', fontSize: '15px'}}>{mainColumn.title}</Col>
+                        <Col span={16} style={{textAlign: 'right', fontSize: '15px'}}>{item[mainColumn.dataIndex]}</Col>
                       </Row>
                     </Card>
                   </List.Item>

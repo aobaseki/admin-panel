@@ -1,11 +1,10 @@
-import stations from "./stations";
-
+import region from './regions';
 
 export default {
-    resource: "companies",
-    displayName: "Companies",
-    primaryKeyName: "id",
-    foreignKeyName: "companyId",
+    resource: "countries",
+    displayName: "Countries",
+    primaryKeyName: "code",
+    foreignKeyName: "countryCode",
     mainColumnName: "name",
     displayColumns: ["name"],
     isReady: true,
@@ -13,6 +12,5 @@ export default {
     canEdit: true,
     showCreatedAt: true,
     showUpdatedAt: true,
-    child: stations
+    child: region
 };
-

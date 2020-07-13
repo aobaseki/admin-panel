@@ -74,6 +74,48 @@ const ShowEditCreateForm = (props)  => {
     </Col>
   };
 
+
+  /**
+   * @param column
+   * @returns {*}
+   */
+  const gpsInput = (column) => {
+    const gpsInputElement = document.getElementsByName('gps-input');
+    console.log(gpsInputElement);
+
+    const showPosition = (position) => {
+      gpsInputElement[0].value = `${position.coords.longitude}, ${position.coords.latitude}`;
+    };
+
+    const currentLocation = () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+      } else {
+        alert("Geolocation is not supported by this browser.");
+      }
+    };
+
+    return <div gutter={16}>
+      <Col span={isMobile ? 28 : 10}>
+        <Form.Item
+            name={column.dataIndex}
+            label={column.title}
+            rules={[{ required: column.required || false, message: `Please enter ${column.title}` }]}
+        >
+          {getFieldDecorator(column.dataIndex, {
+            initialValue: record ? record[column.dataIndex] : '',
+            rules: [{ required: column.required || false, message: `Please enter ${column.title} of ${resourceDisplayName}` }],
+          })(
+              <div>
+                <Input style={{ width: '180px'}} name={'gps-input'} disabled={true} placeholder={'Location GPS'} />
+                <Button style={{ marginLeft: '10px' }} className={'add-btn'} onClick={currentLocation}>GPS</Button>
+              </div>
+          )}
+        </Form.Item>
+      </Col>
+    </div>
+  };
+
   /**
    * @param column
    * @param values
@@ -120,7 +162,7 @@ const ShowEditCreateForm = (props)  => {
             }
           >
             {
-              (column.dataType.values || values).map(value =>
+              (column.dataType.values || (column.dataIndex === 'parentId' ? values.filter(val => !val.parentId && val.id !== record.id) : values)).map(value =>
                 <Option
                   key={typeof value === 'string' ? value : value.id}
                   value={typeof value === 'string' ? value : value.id}>
@@ -204,6 +246,9 @@ const ShowEditCreateForm = (props)  => {
       }
       case inputTypes.multipleValues: {
         return selectInput(column, props[resourceName], 'multiple');
+      }
+      case inputTypes.gps: {
+        return gpsInput(column);
       }
       default: {
         return stringInput(column)
@@ -313,6 +358,48 @@ const ShowEditCreateForm = (props)  => {
     const dynamicMultiParentColumns = columns.filter(col => col.dataType.type === inputTypes.dynamicMultiWithChildren);
     if (dynamicMultiParentColumns.length > 0) {
       return dynamicMultiParentColumns.map(col => {
+
+        if (record[col.childResourceConfig.resource].length === 0) return '';
+
+        return (
+          <Card size={"small"} style={{marginBottom: '5px'}} key={col.dataIndex}>
+            <Row>
+              <Col span={8} style={{fontSize: '18px', fontWeight: 'bold', color: '#00834E'}}>{col.resourceConfig.displayName}</Col>
+              <Col span={16} style={{textAlign: 'left', fontSize: '18px'}}>
+                {
+                  record[col.childResourceConfig.resource].map(item =>
+                    <Tag
+                      key={item.id}
+                      style={{
+                        color: '#007462',
+                        cursor: 'pointer',
+                        fontSize: '15px',
+                        paddingBottom: '3px',
+                        paddingTop: '3px',
+                        marginBottom: '5px'
+                      }}
+                    >
+                      {item.name}
+                    </Tag>
+                  )
+                }
+              </Col>
+            </Row>
+          </Card>
+        );
+      });
+    }
+  };
+
+  /*
+  const renderDynamicMultiParents = () => {
+    if (!record) {
+      return '';
+    }
+
+    const dynamicMultiParentColumns = columns.filter(col => col.dataType.type === inputTypes.dynamicMultiWithChildren);
+    if (dynamicMultiParentColumns.length > 0) {
+      return dynamicMultiParentColumns.map(col => {
         let items = [];
         if (props[col.primaryResourceConfig.resource]) {
           const primaryRecord = props[col.primaryResourceConfig.resource].find(item => item[col.primaryResourceConfig.primaryKeyName]
@@ -353,6 +440,7 @@ const ShowEditCreateForm = (props)  => {
       });
     }
   };
+  */
 
   const renderHasMany = () => {
     if (!record) {
@@ -409,7 +497,16 @@ const ShowEditCreateForm = (props)  => {
       >
         <Form layout="vertical" style={{ overflow: 'auto' }} hideRequiredMark>
           {
-            action === actionTypes.show ? renderShowFields(finalColumns) : renderInputs(finalColumns).map(inputsRow => inputsRow)
+            action === actionTypes.show ? renderShowFields(finalColumns) : ''
+          }
+          {
+            action === actionTypes.edit && record && !record.parentId ?  renderInputs(finalColumns.filter(col => !col.notAccessibleToParent)).map(inputsRow => inputsRow) : ''
+          }
+          {
+            action === actionTypes.edit && record && record.parentId ?  renderInputs(finalColumns.filter(col => col)).map(inputsRow => inputsRow) : ''
+          }
+          {
+            action === actionTypes.create ?  renderInputs(finalColumns.filter(col => !col.notAccessibleToParent)).map(inputsRow => inputsRow) : ''
           }
           {
             action === actionTypes.show && columns.find(col => col.dataType.type === inputTypes.dynamicMultiWithChildren) ? renderDynamicMultiParents() : ''

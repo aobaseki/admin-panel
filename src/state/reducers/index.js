@@ -33,8 +33,6 @@ const reducer = (state = initialState, action) => {
       `DELETE_ONE_${pluralize.singular(resource).toUpperCase()}_SUCCESS`
       ]: {
       const newState = Object.assign({}, state);
-      console.log(action.primaryKeyName);
-      console.log(action.identifierValue);
       newState[resource] = newState[resource].filter(row => row[action.primaryKeyName] !== action.identifierValue);
       return newState;
     }

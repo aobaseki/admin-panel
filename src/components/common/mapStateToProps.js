@@ -1,31 +1,25 @@
 export default function mapStateToProps(state) {
     const {
-      brands,
-      companies,
-      branches,
-      products,
-      manufacturers,
-      product_categories,
-      business_categories,
-      users,
-      clients,
-      product_segments,
-      product_segment_entries,
-      customers
+        countries,
+        regions,
+        towns,
+        communities,
+        products,
+        companies,
+        users,
+        stations,
+        organizations,
     } = state;
 
     return {
-      brands,
-      companies,
-      branches,
-      products,
-      manufacturers,
-      product_categories,
-      business_categories,
-      users,
-      clients,
-      product_segments,
-      product_segment_entries,
-      customers
+        countries,
+        regions,
+        towns,
+        communities,
+        products,
+        companies,
+        users,
+        stations,
+        organizations
     };
 }

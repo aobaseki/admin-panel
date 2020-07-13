@@ -66,9 +66,10 @@ const App = () => {
             {
               resources.filter(r => r.isGeneric === true && r.isReady === true).map(resource => {
                 const resourceName = resource.resource;
+                console.log(resource);
                 return <Route
                   key={resourceName}
-                  path={paths[resourceName]}
+                  path={paths[resource.otherResourceName || resourceName]}
                   render={() => {
                     setTitle(`${ resource.displayName || resourceName} | ${appName}`);
                     return <GenericTable resource={resource} columns={allColumns[resourceName]} />;

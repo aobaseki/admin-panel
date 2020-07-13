@@ -1,18 +1,19 @@
-import stations from "./stations";
-
+import towns from './towns';
 
 export default {
-    resource: "companies",
-    displayName: "Companies",
+    resource: "regions",
     primaryKeyName: "id",
-    foreignKeyName: "companyId",
+    displayName: "Regions",
     mainColumnName: "name",
     displayColumns: ["name"],
+    useHashLink: true,
     isReady: true,
     isGeneric: true,
     canEdit: true,
     showCreatedAt: true,
     showUpdatedAt: true,
-    child: stations
+    child: towns,
+    parentResourceNames: [
+        'countries'
+    ]
 };
-

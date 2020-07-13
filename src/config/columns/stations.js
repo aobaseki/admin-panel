@@ -13,34 +13,34 @@ const columns = [
   {
     title: 'Name',
     dataIndex: 'name',
-    required: true,
+    key: 'name',
     mainColumn: true,
     isTableColumn: true,
+    required: true,
     dataType: {
       type: inputTypes.string,
     }
   },
   {
-    title: 'Parent',
-    dataIndex: 'parentId',
-    required: true,
+    title: 'Town',
+    dataIndex: 'townId',
+    isForeignEntity: true,
+    resourceKey: 'town',
+    resource: 'towns',
+    required: false,
     isTableColumn: true,
-    showParentsOnly: true,
     dataType: {
       type: inputTypes.multi,
     }
   },
   {
-    title: 'Product Segments',
-    dataIndex: 'productSegmentIds',
-    notAccessibleToParent: true,
-    isForeignEntity: true,
-    resourceKey: 'productSegment',
-    resource: 'product_segments',
-    required: false,
+    title: 'GPS',
+    dataIndex: 'stationGps',
+    key: 'stationGps',
     isTableColumn: true,
+    required: false,
     dataType: {
-      type: inputTypes.multipleValues,
+      type: inputTypes.gps,
     }
   },
 ];

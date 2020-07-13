@@ -2,11 +2,11 @@
   width: 250px;
   height: 50px;
   font-size: 20px;
-  background-color: rgb(218, 171, 89);
+  background-color: #000c17;
   color: white;
   &:hover {
-    border-color: rgb(218, 171, 89);
-    box-shadow: 0 2px 4px 0 rgb(116, 91, 47);
+    border-color: #000000;
+    box-shadow: gray;
   }
 }
 #home-page-title {

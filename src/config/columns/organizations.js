@@ -15,15 +15,20 @@ const columns = [
     dataIndex: 'name',
     required: true,
     mainColumn: true,
-    defaultSortOrder: 'descend',
     isTableColumn: true,
-    isCardColumn: true,
-    sortDirections: ['descend', 'ascend'],
     dataType: {
       type: inputTypes.string,
     }
-  }
+  },
+  {
+    title: 'About',
+    dataIndex: 'about',
+    required: false,
+    isTableColumn: true,
+    dataType: {
+      type: inputTypes.string,
+    }
+  },
 ];
 
 export default columns;
-

@@ -1,21 +1,13 @@
 export default {
-  brands: [],
   companies: [],
-  branches: [],
   products: [],
-  manufacturers: [],
-  product_categories: [],
-  business_categories: [],
-  product_segments: [],
-  product_segment_entries: [],
   users: [],
-  clients: [],
-  customers: [],
+  countries: [],
+  regions: [],
+  districts: [],
+  communities: [],
+  suppliers: [],
+  organizations: [],
+  stations: [],
   showing: {}
 };
-
-// showing: {
-//    resource: string
-//    data: {
-//    }
-//}

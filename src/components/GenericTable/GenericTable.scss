@@ -7,19 +7,19 @@
 
 .btn-appearance {
   background-color: white;
-  border-color: #007462;
+  border-color: #0075EC;
   font-weight: normal;
-  color: #007462;
+  color: #0075EC;
   &:hover {
     color: white;
-    background-color: #007462;
+    background-color: #0075EC;
     font-weight: normal;
-    border-color: #007462;
+    border-color: #0075EC;
   }
 }
 
 .table-title {
-  color: #AE735D !important;
+  color: #000 !important;
   text-align: left;
   margin-left: 50px;
   margin-bottom: -20px;
@@ -58,7 +58,7 @@ thead {
     background-color: white !important;
     span {
       font-size: 18px;
-      color: #86610C;
+      color: #0075EC;
     }
   }
   border-top: none;
@@ -67,7 +67,7 @@ thead {
 tbody {
   tr {
     td {
-      font-size: 16px;
+      font-size: 15px;
     }
   }
 }
@@ -76,17 +76,30 @@ tbody {
   border: 1px solid rgb(235, 237, 240);
 }
 
-#add-btn {
-  background-color: #00B0DA;
-  border-color: #00B0DA;
+.add-btn {
+  background-color: #F40057;
+  border-color: #F40057;
   color: white;
   text-align: center;
-  box-shadow: 0 2px 4px 0 #005f76;
-  margin-left: 50px;
-  margin-right: 20px;
+  box-shadow: 0 2px 4px 0 #371614;
   font-weight: bold;
   &:hover {
-    box-shadow: 0 4px 8px 0 #005f76;
+    background-color: #F40057;
+    border-color: #F40057;
+    color: white;
+    box-shadow: 0 4px 8px 0 #371614;
+  }
+  &::selection {
+     background-color: #F40057;
+     border-color: #F40057;
+     color: white;
+     box-shadow: 0 4px 8px 0 #371614;
+   }
+  &:active {
+    background-color: #F40057;
+    border-color: #F40057;
+    color: white;
+    box-shadow: 0 4px 8px 0 #371614;
   }
 }
 
@@ -113,12 +126,12 @@ tbody {
 }
 
 .breadcrumb {
-  background-color: #FFF8F0;
+  background-color: #e9f3f7;
   text-align: left;
   font-weight: bolder;
   margin-right: 10px;
-  border-left: 2px solid #daab59;
-  color: #135A6D;
+  border-left: 2px solid #00D2FA;
+  color: #00D2FA;
   overflow: hidden;
 }
 
